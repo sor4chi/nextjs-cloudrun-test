@@ -1,7 +1,17 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export async function getServerSideProps() {
+  const now = new Date().toLocaleString();
+
+  return {
+    props: {
+      now,
+    },
+  };
+}
+
+export default function Home({ now }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -14,7 +24,7 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js</a> on Docker!
         </h1>
 
-        <p className={styles.description}>{new Date().toLocaleString()}</p>
+        <p className={styles.description}>{now}</p>
 
         <p className={styles.description}>
           Get started by editing{" "}
